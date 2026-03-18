@@ -85,8 +85,8 @@ video {
     font-size: 8em;
     font-weight: bold;
     font-family: 'Dancing Script', cursive;
-    color: var(--primary-color);
-    text-shadow: 0 0 20px var(--secondary-color), 0 0 40px var(--accent-color);
+    color: #fff;
+    text-shadow: 0 0 80px var(--primary-color), 0 0 100px var(--accent-color);
     animation: glow 2s ease-in-out infinite alternate;
     transition: transform 0.3s ease;
     z-index: 10;

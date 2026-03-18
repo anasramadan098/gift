@@ -60,6 +60,7 @@ function startGift() {
             safeQuery('.second').style.display = 'none';
             safeQuery('.third').style.display = 'block';
             intilizeSwiper();
+            typeAnimation(loveSentences[0]);
         }, 5000);
     }
 }
@@ -101,8 +102,22 @@ function intilizeSwiper() {
 
 function onSlideChanged(index) {
 
-    document.querySelector('#book-text').textContent = loveSentences[index];
+    typeAnimation(loveSentences[index]);
 
+}
+
+function typeAnimation(text) {
+    const p = document.querySelector('#book-text');
+    p.textContent = '';
+    let i = 0;
+    const interval = setInterval(() => {
+        if (i < text.length) {
+            p.textContent += text[i];
+            i++;
+        } else {
+            clearInterval(interval);
+        }
+    }, 100);
 }
 
 
