@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gift For Most Beutiful Girl ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/main.css">
+
+    <link rel="stylesheet" href="css/book.css">
 </head>
 <body>
     
 
     <!-- Start Button -->
-     <button class="start-btn">
-        Ready For Your Surprise?
-     </button>
-
-
-
+    
+    
+    
     <div class="holder">
+        <button class="start-btn" >
+           Ready For Your Surprise?
+        </button>
         <video autoplay muted loop playsinline>
             <source  type="video/mp4">
             Your browser does not support the video tag.
@@ -35,58 +41,52 @@
         <div class="third">
 
             <!-- BOOK -->
-            <div class="book-container">
-                <div class="book-wrapper">
-                    <div class="book-spine"></div>
-                    
-                    <!-- Pages Container -->
-                    <div class="book-pages">
-                        <!-- COVER PAGE -->
-                        <div class="book-page cover-page" data-page="0">
-                            <div class="page-content">
-                                <h2>Our Love Story</h2>
-                                <p>Click right to begin...</p>
-                            </div>
-                        </div>
+            <div class="book-text">
+                <div class="icon">💕</div>
+                <p id="book-text"></p>
+            </div>
 
-                        <!-- PHOTO PAGES - Add more by copying this block -->
-                        <div class="book-page photo-page" data-page="1">
-                            <div class="page-label">First Memory</div>
-                            <img src="assets/photo1.jpg" alt="First Memory">
-                        </div>
 
-                        <div class="book-page photo-page" data-page="2">
-                            <div class="page-label">Beautiful Moment</div>
-                            <img src="assets/photo2.jpg" alt="Beautiful Moment">
-                        </div>
-
-                        <div class="book-page photo-page" data-page="3">
-                            <div class="page-label">Us Together</div>
-                            <img src="assets/photo3.jpg" alt="Us Together">
-                        </div>
-
-                        <!-- END PAGE -->
-                        <div class="book-page end-page" data-page="4">
-                            <div class="page-content">
-                                <h2>Forever with You</h2>
-                                <p>❤️ Happy Birthday ❤️</p>
-                            </div>
-                        </div>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="assets/girl (1).jpg" alt="img1">
                     </div>
-
-                    <!-- Navigation Buttons -->
-                    <div class="book-nav">
-                        <button class="nav-btn nav-prev" id="prevBtn">← Previous</button>
-                        <span class="page-counter"><span id="currentPage">1</span> / <span id="totalPages">5</span></span>
-                        <button class="nav-btn nav-next" id="nextBtn">Next →</button>
+                    <div class="swiper-slide">
+                        <img src="assets/girl (2).jpg" alt="img1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/girl (3).jpg" alt="img1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/girl (4).jpg" alt="img1">
                     </div>
                 </div>
             </div>
+
+            <!-- <div class="book" id="book">
+                <div class="book-view">
+                    <div class="book-inner" id="book-inner">
+                        <div class="book-side" id="book-left">
+                            <img id="book-img-left" src="assets/girl (1).jpg" alt="img1">
+                        </div>
+                        <div class="book-side" id="book-right">
+                            <img id="book-img-right" src="assets/girl (2).jpg" alt="img2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-nav">
+                    <button class="book-btn" id="book-prev" type="button">السابق</button>
+                    <button class="book-btn" id="book-next" type="button">التالي</button>
+                </div>
+            </div> -->
 
         </div>
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

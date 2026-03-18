@@ -1,45 +1,36 @@
 const audio = new Audio('assets/music-bg.mp3');
-audio.volume = .8;
+audio.volume = 0.8;
+audio.loop = true;
 
-// Slow down video playback
 const video = document.querySelector('video');
-video.playbackRate = 0.5; // Half speed, adjust if needed
-video.src = 'assets/love bg.mp4';
-
-
 const startBtn = document.querySelector('.start-btn');
 
-
-startBtn.addEventListener('click' , () => {
-    // Request full screen
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-    } else if (document.documentElement.webkitRequestFullscreen) { // Safari
-        document.documentElement.webkitRequestFullscreen();
-    } else if (document.documentElement.msRequestFullscreen) { // IE11
-        document.documentElement.msRequestFullscreen();
-    }
+const loveSentences = [
+    "You are the most beautiful chapter in my life.",
+    "Every moment with you feels like a dream come true.",
+    "My love for you grows stronger with every heartbeat.",
+    "You are my today, my tomorrow, and my forever.",
+]
 
 
-    // Play Music
-    audio.play();
-
-    // Start Body
-    startGift();
+document.querySelector('#book-text').textContent = loveSentences[0];
 
 
-});
+function safeQuery(selector) {
+    return document.querySelector(selector);
+}
 
 
 function startGift() {
-    startBtn.remove();
-    document.querySelector('.holder').style.display = 'flex';
+    if (startBtn) startBtn.remove();
 
-    document.querySelector('.start').style.display = 'block';
+    safeQuery('.holder').style.display = 'flex';
+    safeQuery('.start').style.display = 'block';
 
-    // First: Set Counter sequentially
-    const textEle = document.querySelector('.start-text');
-    const words = ['3' , '2' , '1' , 'HAPPY' , 'BIRTH' , 'DAY' , 'TO' , 'My Love'];
+    video.src = 'assets/love bg.mp4';
+
+    const textEle = safeQuery('.start-text');
+    const words = ['3', '2', '1', 'HAPPY', 'BIRTH', 'DAY', 'TO', 'My Love'];
 
     let index = 0;
     function showNextWord() {
@@ -50,82 +41,68 @@ function startGift() {
                 textEle.textContent = word;
                 textEle.style.transform = 'translate(-50%, -50%) scale(1)';
                 index++;
-                setTimeout(showNextWord, 1000); // Wait 3 second before next word
+                setTimeout(showNextWord, 1200);
             }, 150);
         } else {
-            // Counter finished, proceed to Second
             startSecond();
         }
     }
     showNextWord();
 
     function startSecond() {
-        // Second
-        document.querySelector('.start').style.display = 'none';
-        document.querySelector('.second').style.display = 'block';
+        safeQuery('.start').style.display = 'none';
+        safeQuery('.second').style.display = 'block';
 
         video.src = 'assets/universe.mp4';
-        video.playbackRate = .5;
+        video.playbackRate = 0.5;
 
         setTimeout(() => {
-            // Enable Third    
-            document.querySelector('.second').style.display = 'none';
-            document.querySelector('.third').style.display = 'flex';
-            
-            // Initialize book when displaying
-            initializeBook();
-        }, 2000);
+            safeQuery('.second').style.display = 'none';
+            safeQuery('.third').style.display = 'block';
+            intilizeSwiper();
+        }, 5000);
     }
 }
 
-
-
-// Handle Book Navigation
-let currentPage = 0;
-let totalPages = document.querySelectorAll('.book-page').length;
-
-function initializeBook() {
-    document.getElementById('totalPages').textContent = totalPages;
-    updateBookDisplay();
-}
-
-function updateBookDisplay() {
-    const pages = document.querySelectorAll('.book-page');
-    
-    pages.forEach((page, index) => {
-        page.classList.remove('active', 'prev-page', 'next-page');
-        
-        if (index === currentPage) {
-            page.classList.add('active');
-        } else if (index < currentPage) {
-            page.classList.add('prev-page');
-        } else {
-            page.classList.add('next-page');
-        }
-    });
-    
-    document.getElementById('currentPage').textContent = currentPage + 1;
-    document.getElementById('prevBtn').disabled = currentPage === 0;
-    document.getElementById('nextBtn').disabled = currentPage === totalPages - 1;
-}
-
-document.getElementById('prevBtn')?.addEventListener('click', () => {
-    if (currentPage > 0) {
-        currentPage--;
-        updateBookDisplay();
-    }
-});
-
-document.getElementById('nextBtn')?.addEventListener('click', () => {
-    if (currentPage < totalPages - 1) {
-        currentPage++;
-        updateBookDisplay();
-    }
-});
-
-// Initialize book when third section is shown
+// If no start button exists, start immediately.
 document.addEventListener('DOMContentLoaded', () => {
-    if (document.querySelector('.third').style.display !== 'none') {
-        initializeBook();
+    if (!startBtn) {
+        startGift();
     }
 });
+
+if (startBtn) {
+    startBtn.addEventListener('click', () => {
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+            document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+            document.documentElement.msRequestFullscreen();
+        }
+
+        audio.play();
+        startGift();
+    });
+}
+
+
+function intilizeSwiper() {
+    var swiper = new Swiper(".mySwiper", {
+        effect: "cards",
+        grabCursor: true,
+        on: {
+                slideChange: function () {
+                    onSlideChanged(this.activeIndex);
+                },
+            },
+    });
+}
+
+function onSlideChanged(index) {
+
+    document.querySelector('#book-text').textContent = loveSentences[index];
+
+}
+
+
