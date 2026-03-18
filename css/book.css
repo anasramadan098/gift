@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+    --primary-color: #ff69b4;
+    --secondary-color: #9370db;
+    --accent-color: #dda0dd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.third {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.book-container {
+    width: 100%;
+    max-width: 900px;
+    height: 100%;
+}
+
+.book-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    perspective: 1200px;
+}
+
+/* Book Pages */
+.book-pages {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+    min-height: 400px;
+}
+
+.book-page {
+    position: absolute;
+    width: 350px;
+    height: 450px;
+    background: white;
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transform-origin: center;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    opacity: 0;
+    transform: translateX(500px) rotateY(45deg) scale(0.8);
+    pointer-events: none;
+}
+
+.book-page.active {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg) scale(1);
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.book-page.prev-page {
+    opacity: 0.3;
+    transform: translateX(-400px) rotateY(-35deg) scale(0.85);
+    z-index: 5;
+}
+
+.book-page.next-page {
+    opacity: 0.3;
+    transform: translateX(400px) rotateY(35deg) scale(0.85);
+    z-index: 5;
+}
+
+/* Cover Page */
+.cover-page {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+}
+
+.cover-page .page-content {
+    text-align: center;
+    color: white;
+}
+
+.cover-page h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cover-page p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3em;
+    margin-top: 20px;
+}
+
+/* Photo Pages */
+.photo-page {
+    padding: 15px;
+    flex-direction: column;
+}
+
+.page-label {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+    min-height: 30px;
+}
+
+.photo-page img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* End Page */
+.end-page {
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+}
+
+.end-page .page-content {
+    text-align: center;
+    color: white;
+}
+
+.end-page h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.end-page p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5em;
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+
+/* Navigation Controls */
+.book-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1em;
+    font-family: 'Dancing Script', cursive;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+}
+
+.nav-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
+}
+
+.nav-btn:active {
+    transform: translateY(-1px);
+}
+
+.nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.page-counter {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2em;
+    color: var(--primary-color);
+    font-weight: bold;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .book-page {
+        width: 280px;
+        height: 360px;
+        padding: 15px;
+    }
+
+    .photo-page img {
+        height: 270px;
+    }
+
+    .cover-page h2,
+    .end-page h2 {
+        font-size: 1.8em;
+    }
+
+    .nav-btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .page-counter {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .book-page {
+        width: 250px;
+        height: 320px;
+    }
+
+    .photo-page img {
+        height: 220px;
+    }
+
+    .page-label {
+        font-size: 1.2em;
+    }
+
+    .cover-page p,
+    .end-page p {
+        font-size: 1.1em;
+    }
+}
